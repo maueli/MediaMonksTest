@@ -6,72 +6,12 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import Home from './components/Home.js';
+import Albums from './components/Albums.js';
+import Photos from './components/Photos.js';
 
 const Stack = createNativeStackNavigator();
 
-
-const Home =({navigation})=>{
-    const styles = {
-        container:{
-            flex:1,
-            justifyContent:"center",
-            alignItems:"center"
-        }
-    }
-    return(
-        <View style={styles.container}>
-            <TouchableOpacity
-                onPress={()=>{
-                    navigation.navigate("Albums");
-                }}>
-                <Text>
-                    Albums
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={()=>{
-                    navigation.navigate("Photos");
-                }}>
-                <Text>
-                    Photos
-                </Text>
-            </TouchableOpacity>
-        </View>
-    )
-}
-const  Albums=()=>{
-    const styles = {
-        container:{
-            flex:1,
-            justifyContent:"center",
-            alignItems:"center"
-        }
-    }
-    return(
-        <View style={styles.container}>
-            <Text>
-                Albums
-            </Text>
-        </View>
-    )
-}
-const Photos =()=>{
-    const styles = {
-        container:{
-            flex:1,
-            justifyContent:"center",
-            alignItems:"center"
-        }
-    }
-    return(
-        <View style={styles.container}>
-            <Text>
-                Photos
-            </Text>
-        </View>
-    )
-}
 const App = ()=>{
 
     return( 
