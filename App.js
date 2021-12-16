@@ -23,7 +23,7 @@ const App = ()=>{
                         <Stack.Screen
                             name="Home" 
                             component={Home}
-                            options={{headerShown:true}} />
+                            options={{headerShown:false}} />
                         <Stack.Screen
                             name="Albums" 
                             component={Albums}
