@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, Text, FlatList } from 'react-native';
 
 const  Albums=()=>{
     const styles = {
@@ -10,17 +10,30 @@ const  Albums=()=>{
         }
     }
 
+    const [albums,setAlbums] = useState([]);
+
     useEffect(()=>{
-        fetch('https://jsonplaceholder.typicode.com/todos/1')
+        fetch('https://jsonplaceholder.typicode.com/albums')
             .then(response => response.json())
-            .then(json => console.log(json))
+            .then(json => setAlbums(json) )
     },[]);
+
+    const renderItem = ({item})=>{
+        return(
+            <Text style={{height:200}}> {item.title} </Text>
+        )
+    }
+
 
     return(
         <View style={styles.container}>
-            <Text>
-                Albums
-            </Text>
+            <FlatList
+                data={albums}
+                renderItem={renderItem}
+                keyExtractor={(item)=>item.id} 
+                initialNumToRender={5}
+                windowSize={2}
+                maxToRenderPerBatch={10}/>
         </View>
     )
 }
