@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, FlatList, ActivityIndicator, Image, Dimensions, TouchableOpacity, Modal } from 'react-native';
+import { View, FlatList, ActivityIndicator, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { addList } from '../../store/infoSlice';
 import ModalPhoto from './ModalPhoto';
+import HeaderList from '../HeaderList';
 
 const  PhotoList = ({route})=>{
     
@@ -63,7 +64,6 @@ const  PhotoList = ({route})=>{
 
     const windowsWidth = Dimensions.get('window').width;
 
-
     const renderItem = ({item})=>{
         const styles2 = {
             container:{
@@ -117,6 +117,7 @@ const  PhotoList = ({route})=>{
 
     return(
         <View style={styles.container}>
+            <HeaderList title="Photo List" />
             <Load />
             <ModalPhoto 
                 showHideModal={showHideModal} 
@@ -127,13 +128,3 @@ const  PhotoList = ({route})=>{
 }
 
 export default PhotoList;
-/**
- *                 <>
-                    {list.map(item=>{
-                        return(
-                            <renderItem item={item}/>
-                        )
-                    })
-                    }
-                </>
- */

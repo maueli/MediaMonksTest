@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import {Text, TouchableOpacity, ImageBackground } from 'react-native';
 
 const Home =({navigation})=>{
     const styles = {
@@ -40,14 +40,14 @@ const Home =({navigation})=>{
                 style={styles.btnContainer}
                 onPress={() => navigation.navigate("Lists", {listContent:"Photos"}) }>
                 <Text style={styles.btnText} >
-                    Photos List
+                    Photo List
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.btnContainer}
                 onPress={() => navigation.navigate("PhotoList2", {listContent:"Photos"}) }>
                 <Text style={styles.btnText} >
-                    Photos List 2
+                    Photo List 2
                 </Text>
             </TouchableOpacity>
         </ImageBackground>

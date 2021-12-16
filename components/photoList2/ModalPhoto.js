@@ -1,9 +1,8 @@
 import React from "react";
-import { Modal, Text, View , TouchableOpacity,ScrollView, Image} from "react-native";
+import { Modal, Text, View , TouchableOpacity, Image} from "react-native";
 
 
 const ModalPhoto = (props) => {
-
 
     const styles = {
         centeredView: {
@@ -65,14 +64,12 @@ const ModalPhoto = (props) => {
   return (
     <View >
         <Modal
-          animationType="slide"
-          transparent={true}
-          visible={props.showHideModal}
-          onRequestClose={() => {
-            //Alert.alert("Modal has been closed.");
-            props.setShowHideModal(false);
-            //setModalVisible(!modalVisible);
-          }}>
+            animationType="slide"
+            transparent={true}
+            visible={props.showHideModal}
+            onRequestClose={() => {
+                props.setShowHideModal(false);
+            }}>
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <Image 
