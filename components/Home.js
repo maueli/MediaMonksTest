@@ -32,6 +32,28 @@ const Home =({navigation})=>{
         <View style={styles.container}>
             <TouchableOpacity
                 style={styles.btnContainer}
+                onPress={() => navigation.navigate("Lists", {listContent:"albums"}) }>
+                <Text style={styles.btnText} >
+                    Album List
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.btnContainer}
+                onPress={() => navigation.navigate("Lists", {listContent:"photos"}) }>
+                <Text style={styles.btnText} >
+                    Photos List
+                </Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+export default Home;
+
+/**
+ * 
+ *             <TouchableOpacity
+                style={styles.btnContainer}
                 onPress={() => navigation.navigate("Albums") }>
                 <Text style={styles.btnText} >
                     Albums
@@ -44,8 +66,4 @@ const Home =({navigation})=>{
                     Photos
                 </Text>
             </TouchableOpacity>
-        </View>
-    )
-}
-
-export default Home;
+ */

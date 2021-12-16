@@ -9,6 +9,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './components/Home.js';
 import Albums from './components/Albums.js';
 import Photos from './components/Photos.js';
+import Lists from './components/Lists.js';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -25,13 +27,9 @@ const App = ()=>{
                             component={Home}
                             options={{headerShown:false}} />
                         <Stack.Screen
-                            name="Albums" 
-                            component={Albums}
-                            options={{headerShown:true}} />
-                        <Stack.Screen
-                            name="Photos" 
-                            component={Photos}
-                            options={{headerShown:true}} />
+                            name="Lists" 
+                            component={Lists}
+                            options={{headerShown:false}} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </PersistGate>
@@ -39,3 +37,13 @@ const App = ()=>{
     )
 }
 export default App;
+
+/*
+<Stack.Screen
+name="Albums" 
+component={Albums}
+options={{headerShown:true}} />
+<Stack.Screen
+name="Photos" 
+component={Photos}
+options={{headerShown:true}} />*/
