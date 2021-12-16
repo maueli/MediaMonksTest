@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, FlatList } from 'react-native';
+import HeaderList from './HeaderList';
 
 const  Lists = ({route})=>{
     const { listContent } = route.params;
@@ -15,7 +16,7 @@ const  Lists = ({route})=>{
     const [list,setList] = useState([]);
 
     useEffect(()=>{
-        fetch(`https://jsonplaceholder.typicode.com/${listContent}`)
+        fetch(`https://jsonplaceholder.typicode.com/${listContent.toLowerCase()}`)
             .then(response => response.json())
             .then(json => setList(json) )
     },[]);
@@ -52,6 +53,7 @@ const  Lists = ({route})=>{
 // contentContainerStyle={{ alignItems:"center"}}
     return(
         <View style={styles.container}>
+            <HeaderList title={listContent} />
             <FlatList
                 style={{width:"100%"}}
                 data={list}

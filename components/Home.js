@@ -32,14 +32,14 @@ const Home =({navigation})=>{
         <View style={styles.container}>
             <TouchableOpacity
                 style={styles.btnContainer}
-                onPress={() => navigation.navigate("Lists", {listContent:"albums"}) }>
+                onPress={() => navigation.navigate("Lists", {listContent:"Albums"}) }>
                 <Text style={styles.btnText} >
                     Album List
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.btnContainer}
-                onPress={() => navigation.navigate("Lists", {listContent:"photos"}) }>
+                onPress={() => navigation.navigate("Lists", {listContent:"Photos"}) }>
                 <Text style={styles.btnText} >
                     Photos List
                 </Text>
