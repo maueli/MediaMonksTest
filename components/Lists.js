@@ -2,9 +2,24 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import HeaderList from './HeaderList';
 import Item from './Item';
+import { useDispatch, useSelector } from 'react-redux';
+import { addListAlbums, addListPhotos, fetchedAlbums, fetchedPhotos, addList } from '../store/infoSlice';
 
 const  Lists = ({route})=>{
+    
     const { listContent } = route.params;
+    const dispatch = useDispatch();
+    /*const isFetchedAlbums = useSelector( state => state.info.isFetchedAlbums);
+    const isFetchedPhotos = useSelector( state => state.info.isFetchedPhotos);
+    const listAlbumsRedux = useSelector( state => state.info.listAlbums );
+    const listPhotosRedux = useSelector( state => state.info.listPhotos );*/
+
+    const info = useSelector( state => state.info.info)
+
+    //
+
+
+
     const styles = {
         container:{
             flex:1,
@@ -17,13 +32,42 @@ const  Lists = ({route})=>{
     const [list,setList] = useState([]);
     const [load,setLoad] = useState(true);
 
+
+
     useEffect(()=>{
-        fetch(`https://jsonplaceholder.typicode.com/${listContent.toLowerCase()}`)
-            .then(response => response.json())
-            .then(json => {
-                setList(json);
-                setLoad(false);
-            })
+
+        // Find object ( Photos / Albums )
+        const listRedux = info.find( e =>{
+            return e.type == listContent.toLowerCase();
+        });
+
+        // Check if is fetched
+        const isFetched = listRedux.isFetched;
+
+        // Take the list
+        const list2 = listRedux.list;
+
+        if(isFetched){
+            // Fetched => just setList
+            setList(list2);
+            setLoad(false);
+        }
+        else{
+            // Fetch info and setList, and store in persistance
+            fetch(`https://jsonplaceholder.typicode.com/${listContent.toLowerCase()}`)
+                .then(response => response.json())
+                .then(json => {
+                    setList(json);
+                    setLoad(false);
+                    const preInfo = {
+                        type: listContent.toLowerCase(),
+                        list: json
+                    }
+                    dispatch( addList(preInfo) );
+                    dispatch( fetchedAlbums() );
+                })
+        }
+
     },[]);
 
     const renderItem = ({item})=>{
@@ -34,7 +78,7 @@ const  Lists = ({route})=>{
                 padding:20,
             },
             container2:{
-                width:"80%",
+                width:"90%",
                 //height:120,
                 borderRadius:10,
                 justifyContent:"center",
@@ -76,7 +120,6 @@ const  Lists = ({route})=>{
                 <View style={{justifyContent:"center", alignItems:"center", flex:1, height:"100%"}}>
                     <ActivityIndicator size="large" color="red" />
                 </View>
-                
             )
         }
         else{

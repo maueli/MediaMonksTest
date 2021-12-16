@@ -9,7 +9,8 @@ const persistConfigInfo = {
   key: 'root',
   //storage,
   storage: AsyncStorage,
-  whitelist: []
+  whitelist: ["info"]
+  //whitelist: ["listAlbums", "listPhotos", "isFetchedAlbums", "isFetchedPhotos"]
 };
 
 const reducersCombined = {

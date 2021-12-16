@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
@@ -20,6 +20,11 @@ const HeaderList = (props)=>{
             flex:5,
             justifyContent:"center",
             alignItems:"center"
+        },
+        text:{
+            color:"white",
+            fontSize:15,
+            letterSpacing:1
         }
     }
     return(
@@ -27,12 +32,12 @@ const HeaderList = (props)=>{
             <TouchableOpacity
                 style={styles.btnContainer}
                 onPress={()=>navigation.goBack()} >
-                <Text>
+                <Text style={styles.text}>
                     &#8592;
                 </Text>
             </TouchableOpacity>
             <View style={styles.textContainer}>
-                <Text>
+                <Text style={styles.text}>
                     {props.title}
                 </Text>
             </View>
