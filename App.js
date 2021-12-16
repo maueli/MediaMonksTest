@@ -10,7 +10,7 @@ import Home from './components/Home.js';
 //import Albums from './components/Albums.js';
 //import Photos from './components/Photos.js';
 import Lists from './components/Lists.js';
-
+import PhotoList from './components/photoList2/PhotoList.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +38,10 @@ const App = ()=>{
                         <Stack.Screen
                             name="Lists" 
                             component={Lists}
+                            options={{headerShown:false}} />
+                        <Stack.Screen
+                            name="PhotoList2" 
+                            component={PhotoList}
                             options={{headerShown:false}} />
                     </Stack.Navigator>
                 </NavigationContainer>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 
 const Home =({navigation})=>{
     const styles = {
@@ -12,9 +12,9 @@ const Home =({navigation})=>{
         btnContainer:{
             width:"70%",
             padding:20,
-            backgroundColor:"blue",
+            backgroundColor:"rgba(0,0,0,0.6)",
             borderWidth:1,
-            borderColor:"black",
+            borderColor:"white",
             borderRadius:10,
             justifyContent:"center",
             alignItems:"center"
@@ -25,11 +25,10 @@ const Home =({navigation})=>{
         }
     }
 
-
-
-
     return(
-        <View style={styles.container}>
+        <ImageBackground
+            source={require("../img/background.jpg")}
+            style={styles.container}>
             <TouchableOpacity
                 style={styles.btnContainer}
                 onPress={() => navigation.navigate("Lists", {listContent:"Albums"}) }>
@@ -44,26 +43,15 @@ const Home =({navigation})=>{
                     Photos List
                 </Text>
             </TouchableOpacity>
-        </View>
+            <TouchableOpacity
+                style={styles.btnContainer}
+                onPress={() => navigation.navigate("PhotoList2", {listContent:"Photos"}) }>
+                <Text style={styles.btnText} >
+                    Photos List 2
+                </Text>
+            </TouchableOpacity>
+        </ImageBackground>
     )
 }
 
 export default Home;
-
-/**
- * 
- *             <TouchableOpacity
-                style={styles.btnContainer}
-                onPress={() => navigation.navigate("Albums") }>
-                <Text style={styles.btnText} >
-                    Albums
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.btnContainer}
-                onPress={() => navigation.navigate("Photos") }>
-                <Text style={styles.btnText} >
-                    Photos
-                </Text>
-            </TouchableOpacity>
- */

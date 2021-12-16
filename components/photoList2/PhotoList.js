@@ -1,14 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, Image, Dimensions, TouchableOpacity, Modal } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { addList } from '../store/infoSlice';
+import { addList } from '../../store/infoSlice';
+import ModalPhoto from './ModalPhoto';
 
-// Components
-import HeaderList from './HeaderList';
-import Photo from './Photo';
-
-
-const  Lists = ({route})=>{
+const  PhotoList = ({route})=>{
     
     const { listContent } = route.params;
     const dispatch = useDispatch();
@@ -25,6 +21,8 @@ const  Lists = ({route})=>{
 
     const [list,setList] = useState([]);
     const [load,setLoad] = useState(true);
+    const [showHideModal, setShowHideModal] = useState(false);
+    const [itemSelected, setItemSelected] = useState("");
 
 
 
@@ -53,7 +51,7 @@ const  Lists = ({route})=>{
                 .then(json => {
                     setList(json);
                     setLoad(false);
-                    const preInfo = {
+                    const preInfo = { 
                         type: listContent.toLowerCase(),
                         list: json
                     }
@@ -63,45 +61,32 @@ const  Lists = ({route})=>{
 
     },[]);
 
+    const windowsWidth = Dimensions.get('window').width;
+
+
     const renderItem = ({item})=>{
         const styles2 = {
             container:{
                 justifyContent:"center",
                 alignItems:"center",
-                padding:20,
-            },
-            container2:{
-                width:"90%",
-                //height:120,
-                borderRadius:10,
-                justifyContent:"center",
-                alignItems:"center",
-                backgroundColor:"gray",
-                padding:0,
-                overflow:"hidden"
-            },
-            text:{
-                color:"white",
-                padding:20
+                flexDirection:"row",
+                flexWrap:"wrap",
+                flex:1
             }
         }
-
-        const Photos = ()=>{
-            if(listContent=="Photos"){
-                return <Photo item={item} />
-            }
-            else{
-                return null
-            }
+        const onPress=()=>{
+            setShowHideModal(true);
+            setItemSelected(item);
         }
 
         return(
-            <View style={styles2.container}>
-                <View style={styles2.container2}>
-                    <Photos />
-                    <Text style={styles2.text} > {item.title} </Text>
-                </View>
-            </View>
+            <TouchableOpacity
+                onPress={()=>onPress()} 
+                style={styles2.container}>
+                <Image 
+                    source={{uri:item.url} } 
+                    style={{width:"100%",height:windowsWidth/3 }} />
+            </TouchableOpacity>
         )
     }
 
@@ -115,14 +100,16 @@ const  Lists = ({route})=>{
         }
         else{
             return(
-                <FlatList
-                    style={{width:"100%"}}
-                    data={list}
-                    renderItem={renderItem}
-                    keyExtractor={(item)=>item.id} 
-                    initialNumToRender={5}
-                    windowSize={3}
-                    maxToRenderPerBatch={10}/>
+                    <FlatList
+                        style={{width:"100%"}}
+                        data={list}
+                        numColumns={3}
+                        columnWrapperStyle={{flexWrap:"wrap"}}
+                        renderItem={renderItem}
+                        keyExtractor={(item)=>item.id} 
+                        initialNumToRender={5}
+                        windowSize={3}
+                        maxToRenderPerBatch={10}/>
             )
         }
     }
@@ -130,10 +117,23 @@ const  Lists = ({route})=>{
 
     return(
         <View style={styles.container}>
-            <HeaderList title={listContent} />
             <Load />
+            <ModalPhoto 
+                showHideModal={showHideModal} 
+                setShowHideModal={setShowHideModal}
+                item={itemSelected}/>
         </View>
     )
 }
 
-export default Lists;
+export default PhotoList;
+/**
+ *                 <>
+                    {list.map(item=>{
+                        return(
+                            <renderItem item={item}/>
+                        )
+                    })
+                    }
+                </>
+ */

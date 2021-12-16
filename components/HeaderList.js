@@ -6,7 +6,7 @@ const HeaderList = (props)=>{
     const navigation = useNavigation();
     const styles = {
         container:{
-            backgroundColor:"green",
+            backgroundColor:"black",
             width:"100%",
             height:50,
             flexDirection:"row"
@@ -17,14 +17,15 @@ const HeaderList = (props)=>{
             flex:1
         },
         textContainer:{
-            flex:5,
+            flex:8,
             justifyContent:"center",
             alignItems:"center"
         },
         text:{
             color:"white",
+            fontWeight:"bold",
             fontSize:15,
-            letterSpacing:1
+            letterSpacing:2
         }
     }
     return(

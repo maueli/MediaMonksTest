@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import React from 'react';
+import { View, Image } from 'react-native';
 
-const Item = ({item})=>{
+const Photo = ({item})=>{
     const styles = {
         container:{
             width:"100%",
@@ -23,4 +23,4 @@ const Item = ({item})=>{
     )
 };
 
-export default Item;
+export default Photo;
