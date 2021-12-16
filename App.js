@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, ActivityIndicator} from 'react-native';
 import {store, persistor} from './store/store.js'
 import { Provider } from 'react-redux'
 // Redux-Persist (LOCAL STORAGE)
@@ -7,19 +7,28 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './components/Home.js';
-import Albums from './components/Albums.js';
-import Photos from './components/Photos.js';
+//import Albums from './components/Albums.js';
+//import Photos from './components/Photos.js';
 import Lists from './components/Lists.js';
 
 
 const Stack = createNativeStackNavigator();
+
+const Loading = ()=>{
+    return(
+        <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+            <ActivityIndicator size="large" color="red" />
+        </View>
+    )
+}
 
 const App = ()=>{
 
     return( 
         <Provider store={store}>
             <PersistGate 
-                persistor={persistor}>
+                persistor={persistor}
+                loading={ <Loading/> }>
                 <NavigationContainer>
                     <Stack.Navigator initialRouteName="Home">
                         <Stack.Screen

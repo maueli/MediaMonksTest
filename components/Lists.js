@@ -3,17 +3,12 @@ import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import HeaderList from './HeaderList';
 import Item from './Item';
 import { useDispatch, useSelector } from 'react-redux';
-import { addListAlbums, addListPhotos, fetchedAlbums, fetchedPhotos, addList } from '../store/infoSlice';
+import { addList } from '../store/infoSlice';
 
 const  Lists = ({route})=>{
     
     const { listContent } = route.params;
     const dispatch = useDispatch();
-    /*const isFetchedAlbums = useSelector( state => state.info.isFetchedAlbums);
-    const isFetchedPhotos = useSelector( state => state.info.isFetchedPhotos);
-    const listAlbumsRedux = useSelector( state => state.info.listAlbums );
-    const listPhotosRedux = useSelector( state => state.info.listPhotos );*/
-
     const info = useSelector( state => state.info.info)
 
     //
@@ -64,7 +59,6 @@ const  Lists = ({route})=>{
                         list: json
                     }
                     dispatch( addList(preInfo) );
-                    dispatch( fetchedAlbums() );
                 })
         }
 
