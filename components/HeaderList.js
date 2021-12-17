@@ -17,9 +17,9 @@ const HeaderList = (props)=>{
             flex:1
         },
         textContainer:{
-            flex:8,
+            flex:5,
             justifyContent:"center",
-            alignItems:"center"
+            alignItems:"flex-start"
         },
         text:{
             color:"white",
@@ -33,7 +33,7 @@ const HeaderList = (props)=>{
             <TouchableOpacity
                 style={styles.btnContainer}
                 onPress={()=>navigation.goBack()} >
-                <Text style={styles.text}>
+                <Text style={[styles.text,{fontSize:20}]}>
                     &#8592;
                 </Text>
             </TouchableOpacity>

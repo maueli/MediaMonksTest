@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addList } from '../../store/infoSlice';
 import ModalPhoto from './ModalPhoto';
 import HeaderList from '../HeaderList';
+import LoadList from './LoadList';
 
 const  PhotoList = ({route})=>{
     
@@ -90,35 +91,14 @@ const  PhotoList = ({route})=>{
         )
     }
 
-    const Load = ()=>{
-        if(load){
-            return(
-                <View style={{justifyContent:"center", alignItems:"center", flex:1, height:"100%"}}>
-                    <ActivityIndicator size="large" color="red" />
-                </View>
-            )
-        }
-        else{
-            return(
-                    <FlatList
-                        style={{width:"100%"}}
-                        data={list}
-                        numColumns={3}
-                        columnWrapperStyle={{flexWrap:"wrap"}}
-                        renderItem={renderItem}
-                        keyExtractor={(item)=>item.id} 
-                        initialNumToRender={5}
-                        windowSize={3}
-                        maxToRenderPerBatch={10}/>
-            )
-        }
-    }
-
 
     return(
         <View style={styles.container}>
             <HeaderList title="Photo List" />
-            <Load />
+            <LoadList 
+                load={load} 
+                list={list} 
+                renderItem={renderItem}/>
             <ModalPhoto 
                 showHideModal={showHideModal} 
                 setShowHideModal={setShowHideModal}
